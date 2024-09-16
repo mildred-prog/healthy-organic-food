@@ -1,16 +1,23 @@
 /* Global Styles */
-body {
+html, body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    background-color: #f4f4f9;
+    color: #34495e;
+}
+
+* {
+    box-sizing: border-box; /* Ensures padding and borders don't exceed element size */
 }
 
 main {
     padding: 2rem 1rem;
 }
 
-h1, h2 {
+h1, h2, h3 {
     color: #2c3e50;
 }
 
@@ -31,13 +38,13 @@ ul li {
 header {
     background-color: #ffffff;
     padding: 0 1rem;
-    position: fixed;
-    z-index: 99;
     width: 100%;
     box-shadow: 0 2px 2px #3a3a3a;
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+    position: relative;
+    z-index: 99;
 }
 
 header a {
@@ -68,12 +75,8 @@ nav {
     box-shadow: 0 2px 2px #3a3a3a;
     display: none;
     top: 100%;
-    margin-right: 30px;
 }
-.menu-bar {
-    margin-right: 30px;
 
-}
 #nav-toggle:checked~nav {
     display: block;
 }
@@ -86,7 +89,112 @@ nav {
     font-size: 2rem;
 }
 
-/* Media query: tablets and larger (768px and up) */
+/* Banner */
+.banner {
+    position: relative;
+    height: 100vh; /* Full screen height */
+    width: 100%;
+    overflow: hidden;
+}
+
+.banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image covers the entire banner area */
+    filter: blur(2px); /* Slight blur for the background image */
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Dark transparent overlay */
+    z-index: 1;
+}
+
+.banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2; /* Ensures text is above the overlay and image */
+    color: rgba(255, 255, 255, 0.9); /* Almost pure white text */
+    text-shadow: 2px 2px 5px rgba(240, 233, 233, 0.7); /* Darker text shadow for better readability */
+    padding: 2rem;
+    text-align: center;
+}
+
+.banner-text h2 {
+    font-size: 2.5rem;
+    color: #ecf0f1;
+}
+
+.banner-text p {
+    font-size: 1.25rem;
+    color: #ecf0f1;
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (min-width: 768px) {
+    .banner-text h2 {
+        font-size: 3rem;
+    }
+    .banner-text p {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .banner-text h2 {
+        font-size: 4rem;
+    }
+    .banner-text p {
+        font-size: 1.75rem;
+    }
+}
+
+/* Food Grid */
+.food-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.food-item {
+    background-color: #ecf0f1;
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.food-item h3 {
+    font-size: 1.75rem;
+    color: #27ae60;
+}
+
+.food-item ul {
+    margin-top: 1rem;
+    color: #2c3e50;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    background-color: #2c3e50;
+    color: white;
+    padding: 1rem;
+    width: 100%;
+    color: #ecf0f1;
+}
+
+footer p {
+    color:#f4f4f9
+}
+/* Media query for tablets and larger screens */
 @media screen and (min-width: 768px) {
     nav {
         display: block;
@@ -107,29 +215,22 @@ nav {
     .nav-toggle-label {
         display: none;
     }
+
+    .food-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-/* Food Details */
-.food-details {
-    padding: 2rem;
-    text-align: center;
-}
+@media screen and (min-width: 1024px) {
+    .food-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 
-.food-details h2 {
-    font-size: 2rem;
-    color: #27ae60;
-}
+    .banner-text h2 {
+        font-size: 3rem;
+    }
 
-.food-details ul {
-    padding: 0;
-}
-
-footer {
-    text-align: center;
-    background-color: #2c3e50;
-    color: white;
-    padding: 1rem;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    .banner-text p {
+        font-size: 1.5rem;
+    }
 }
